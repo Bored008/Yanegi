@@ -53,7 +53,7 @@ function MobileMarquee({ images, reverse }: { images: string[]; reverse?: boolea
           duration: 30,
         }}
       >
-        {[...images, ...images].map((src, i) => (
+        {[...images, ...images, ...images, ...images].map((src, i) => (
           <div
             className="relative h-[180px] w-[132px] shrink-0 overflow-hidden rounded-[22px]"
             key={`${src}-${i}`}
