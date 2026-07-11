@@ -36,7 +36,13 @@ export function Manifesto() {
       opacity: 0,
       duration: 0.8,
       stagger: 0.2,
-      ease: "back.out(1.5)"
+      ease: "back.out(1.5)",
+      scrollTrigger:{
+        trigger: ".man-card-anim",
+        start: "top 40%",
+        end: "top 20%",
+        scrub: 2
+      }
     }, "-=0.5");
   }, { scope: container });
 

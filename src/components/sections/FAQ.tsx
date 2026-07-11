@@ -69,7 +69,13 @@ export function Faq() {
     .from(".faq-cards-anim", {
       x: "100vw",
       opacity: 0,
-      duration: 1.5
+      duration: 2,
+      scrollTrigger:{
+        trigger: ".faq-cards-anim",
+        start: "top 50%",
+        end: "top 20%",
+        scrub: 2
+      }
     }, 0.2);
   }, { scope: sectionRef });
 
