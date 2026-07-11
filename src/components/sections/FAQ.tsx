@@ -72,8 +72,8 @@ export function Faq() {
       duration: 2,
       scrollTrigger:{
         trigger: ".faq-cards-anim",
-        start: "top 50%",
-        end: "top 20%",
+        start: "top 70%",
+        end: "top 40%",
         scrub: 2
       }
     }, 0.2);

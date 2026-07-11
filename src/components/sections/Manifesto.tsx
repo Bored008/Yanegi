@@ -39,8 +39,8 @@ export function Manifesto() {
       ease: "back.out(1.5)",
       scrollTrigger:{
         trigger: ".man-card-anim",
-        start: "top 40%",
-        end: "top 20%",
+        start: "top 70%",
+        end: "top 40%",
         scrub: 2
       }
     }, "-=0.5");
