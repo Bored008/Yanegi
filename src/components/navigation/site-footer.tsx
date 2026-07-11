@@ -37,19 +37,16 @@ export function SiteFooter() {
               </span>
               <div className="flex items-center justify-start gap-[20px]">
                 <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/ic_baseline-facebook.svg" alt="Facebook" width={28} height={28} />
+                  <Image src="/footer/ic_baseline-facebook.svg" alt="Facebook" width={34} height={34} />
                 </Link>
                 <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/ri_instagram-fill.svg" alt="Instagram" width={28} height={28} />
+                  <Image src="/footer/ri_instagram-fill.svg" alt="Instagram" width={34} height={34} />
                 </Link>
                 <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/mdi_linkedin.svg" alt="LinkedIn" width={28} height={28} />
-                </Link>
-                <Link href="#" className="hover:opacity-80 transition-opacity bg-white p-[3px] rounded">
-                  <Image src="/footer/Vector.svg" alt="X (Twitter)" width={22} height={22} />
+                  <Image src="/footer/mdi_linkedin.svg" alt="LinkedIn" width={34} height={34} />
                 </Link>
                 <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/whatsapp.svg" alt="Whatsapp" width={28} height={28} />
+                  <Image src="/footer/whatsapp.svg" alt="Whatsapp" width={34} height={34} />
                 </Link>
               </div>
             </div>
@@ -124,12 +121,22 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="relative z-10 w-full border-t border-white/70 pt-[18px] pb-6 flex flex-col md:flex-row justify-between items-center gap-4 text-white font-[family-name:var(--font-poppins)] text-[15px]">
-          <div className="flex items-center gap-[8px]">
+        <div className="relative z-10 w-full border-t border-white/70 pt-[18px] pb-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-white font-[family-name:var(--font-poppins)] text-[15px]">
+          <div className="flex items-center justify-center md:justify-start gap-[8px] w-full md:w-1/3">
             <span className="text-[20px]">&copy;</span>
-            <span className="text-[16px]">2026 FIRECHEM. All Rights Reserved</span>
+            <span className="text-[16px]">2026 BORED. All Rights Reserved</span>
           </div>
-          <div className="flex items-center gap-[18px] flex-wrap justify-end">
+          
+          <div className="w-full md:w-1/3 flex justify-center text-center text-[16px]">
+            <span>
+              Designed and built by{" "}
+              <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold">
+                Bored
+              </Link>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-[18px] flex-wrap justify-center md:justify-end w-full md:w-1/3">
             <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Privacy Policy</Link>
             <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Terms of Service</Link>
             <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Cookie Policy</Link>
