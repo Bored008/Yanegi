@@ -2,6 +2,11 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
@@ -39,7 +44,35 @@ const faqs = [
 export function Faq() {
   const [activeId, setActiveId] = useState<string>("Q_01");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: 1
+      }
+    });
+
+    tl.from(".faq-title-anim", {
+      x: -100,
+      opacity: 0,
+      duration: 1
+    }, 0)
+    .from(".faq-side-anim", {
+      x: 100,
+      opacity: 0,
+      duration: 1
+    }, 0)
+    .from(".faq-cards-anim", {
+      x: "100vw",
+      opacity: 0,
+      duration: 1.5
+    }, 0.2);
+  }, { scope: sectionRef });
+
   const [activeArrow, setActiveArrow] = useState<'left' | 'right'>('right');
 
   // Drag to scroll state
@@ -125,12 +158,12 @@ export function Faq() {
   );
 
   return (
-    <section id="faq" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
+    <section ref={sectionRef} id="faq" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
       <div className="mx-auto max-w-[1260px] flex flex-col gap-[40px] lg:gap-[78px]">
         
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-20">
-          <h2 className="font-[family-name:var(--font-oswald)] text-[56px] sm:text-[72px] lg:text-[86px] font-bold leading-[1.1] text-[#060606]">
+          <h2 className="faq-title-anim font-[family-name:var(--font-oswald)] text-[56px] sm:text-[72px] lg:text-[86px] font-bold leading-[1.1] text-[#060606]">
             Frequently <br className="hidden lg:block" />
             Asked{" "}
             <span className="text-[#c8f021] underline decoration-[#c8f021] decoration-[3px] underline-offset-[8px]">
@@ -138,7 +171,7 @@ export function Faq() {
             </span>
           </h2>
           
-          <div className="flex flex-col items-start lg:w-[300px] gap-6">
+          <div className="faq-side-anim flex flex-col items-start lg:w-[300px] gap-6">
             <p className="font-[family-name:var(--font-poppins)] text-[16px] text-[#969595] leading-snug">
               Find answers to common questions about our <span className="text-[#060606]">Yanagi</span>
             </p>
@@ -149,7 +182,7 @@ export function Faq() {
         </div>
 
         {/* Carousel Section */}
-        <div className="flex flex-col gap-8">
+        <div className="faq-cards-anim flex flex-col gap-8">
           <div 
             ref={scrollContainerRef}
             className={`flex gap-5 overflow-x-auto hide-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 ${isDragging ? 'cursor-grabbing snap-none select-none' : 'cursor-grab snap-x snap-mandatory'}`}
