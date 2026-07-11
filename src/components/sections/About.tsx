@@ -97,7 +97,7 @@ function AboutContent() {
       </p>
       <AnimatedButton
         variant="black"
-        href="#join-event"
+        href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
         className="about-anim mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
       >
         <span>Join Event Now</span>
@@ -119,15 +119,47 @@ export function About() {
   useGSAP(() => {
     gsap.from(".about-anim", {
       scrollTrigger: {
-        trigger: container.current,
-        start: "top 75%", // triggers when top of section hits 75% of viewport
+        trigger: ".about-text-content",
+        start: "top 95%",
+        toggleActions: "play none reset reverse",
       },
       y: 50,
       opacity: 0,
       duration: 1,
       stagger: 0.1,
-      ease: "back.out(1.5)" // little damping/bounce
+      ease: "back.out(1.5)" 
     });
+
+    const flipRandomPhoto = () => {
+      const photos = gsap.utils.toArray(".desktop-photo-anim");
+      if (!photos.length) return;
+      const randomPhoto = photos[Math.floor(Math.random() * photos.length)] as HTMLElement;
+      
+      gsap.to(randomPhoto, {
+        keyframes: [
+          { scaleY: 0, duration: 0.2, ease: "power2.in" },
+          { scaleY: 1, duration: 0.2, ease: "power2.out" }
+        ],
+        onUpdate: function() {
+          if (this.ratio >= 0.5 && randomPhoto.dataset.flipped !== "true") {
+            randomPhoto.dataset.flipped = "true";
+            const img = randomPhoto.querySelector("img");
+            if (img) {
+              const randomImage = mobilePhotos[Math.floor(Math.random() * mobilePhotos.length)];
+              img.src = randomImage;
+              img.srcset = "";
+            }
+          } else if (this.ratio < 0.5) {
+            randomPhoto.dataset.flipped = "false";
+          }
+        },
+        onComplete: () => {
+          gsap.delayedCall(0.8, flipRandomPhoto);
+        }
+      });
+    };
+
+    gsap.delayedCall(2, flipRandomPhoto);
   }, { scope: container });
 
   return (
@@ -141,14 +173,14 @@ export function About() {
       </div>
 
       <div className="relative mx-auto max-w-[1224px] lg:min-h-[785px] z-[1]">
-        <div className="relative z-[1] lg:pt-0">
+        <div className="about-text-content relative z-[1] lg:pt-0">
           <AboutContent />
         </div>
 
         <div className="pointer-events-none absolute inset-0 hidden lg:block z-0">
           {desktopPhotos.map((photo) => (
             <div
-              className={`about-anim absolute overflow-hidden rounded-[22px] ${photo.className}`}
+              className={`about-anim desktop-photo-anim absolute overflow-hidden rounded-[22px] ${photo.className}`}
               key={photo.src}
             >
               <Image
