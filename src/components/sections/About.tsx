@@ -119,7 +119,7 @@ export function About() {
   useGSAP(() => {
     gsap.from(".about-anim", {
       scrollTrigger: {
-        trigger: ".about-text-content",
+        trigger: container.current,
         start: "top 85%",
         end: "end 20%",
         scrub:1

@@ -1,11 +1,50 @@
+"use client";
+
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Manifesto() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 60%",
+        end: "top 10%",
+        scrub: 1
+      }
+    });
+
+    tl.from(".man-title-anim", {
+      x: -100,
+      opacity: 0,
+      duration: 1
+    })
+    .from(".man-bento-anim", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1
+    }, "-=0.5")
+    .from(".man-card-anim", {
+      scale: 0,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "back.out(1.5)"
+    }, "-=0.5");
+  }, { scope: container });
+
   return (
-    <section id="manifesto" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px]">
+    <section ref={container} id="manifesto" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px]">
       <div className="mx-auto max-w-[1224px]">
         {/* Heading */}
-        <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px] mb-12">
+        <h2 className="man-title-anim font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px] mb-12">
           Our{" "}
           <span className="text-[#c8f021] underline decoration-[#c8f021] decoration-[3px] underline-offset-[8px]">
             Manifesto
@@ -13,11 +52,11 @@ export function Manifesto() {
         </h2>
 
         {/* Bento Grid Wrapper */}
-        <div className="rounded-[36px] border border-black/20 bg-[#f4f4f4]/25 p-4 sm:p-[24px]">
+        <div className="man-bento-anim rounded-[36px] border border-black/20 bg-[#f4f4f4]/25 p-4 sm:p-[24px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-[16px]">
             
             {/* Box 1 (Full Width) */}
-            <div className="order-1 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-3 py-6 px-6 sm:py-[20px] sm:px-[28px] flex flex-col lg:flex-row justify-between lg:items-end gap-6 overflow-hidden">
+            <div className="man-card-anim order-1 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-3 py-6 px-6 sm:py-[20px] sm:px-[28px] flex flex-col lg:flex-row justify-between lg:items-end gap-6 overflow-hidden">
               <div className="flex flex-col gap-[27px]">
                 <div className="text-[#c8f021] font-[family-name:var(--font-poppins)] font-medium text-[14px] leading-[1.1]">
                   What we believe
@@ -32,7 +71,7 @@ export function Manifesto() {
             </div>
 
             {/* Box 2: 01 Plans over feeds */}
-            <div className="order-2 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-2 py-6 px-6 sm:py-8 sm:px-8 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 overflow-hidden">
+            <div className="man-card-anim order-2 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-2 py-6 px-6 sm:py-8 sm:px-8 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 overflow-hidden">
               <div className="flex flex-col gap-[22px]">
                 <div className="flex items-center gap-2 text-[#c8f021] font-[family-name:var(--font-poppins)] font-semibold text-[16px] leading-[1.1]">
                   <span>01</span>
@@ -65,7 +104,7 @@ export function Manifesto() {
             </div>
 
             {/* Box 3: 04 No Fluff (Spans 1 column, 2 rows) */}
-            <div className="order-5 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 lg:row-span-2 p-6 sm:p-8 flex flex-col justify-between overflow-hidden relative">
+            <div className="man-card-anim order-5 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 lg:row-span-2 p-6 sm:p-8 flex flex-col justify-between overflow-hidden relative">
               <div className="flex items-center gap-2 text-[#c8f021] font-[family-name:var(--font-poppins)] font-semibold text-[16px] leading-[1.1] z-10">
                 <span>04</span>
                 <span>No Fluff</span>
@@ -92,7 +131,7 @@ export function Manifesto() {
             </div>
 
             {/* Box 4: 02 Live by default */}
-            <div className="order-3 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 p-6 sm:p-[23px] flex flex-col justify-between overflow-hidden">
+            <div className="man-card-anim order-3 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 p-6 sm:p-[23px] flex flex-col justify-between overflow-hidden">
               <div className="flex flex-col gap-[22px]">
                 <div className="flex items-center gap-2 text-[#c8f021] font-[family-name:var(--font-poppins)] font-semibold text-[16px] leading-[1.1]">
                   <span>02</span>
@@ -108,7 +147,7 @@ export function Manifesto() {
             </div>
 
             {/* Box 5: 03 Real humans only */}
-            <div className="order-4 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 p-6 sm:p-[23px] flex flex-col justify-between overflow-hidden">
+            <div className="man-card-anim order-4 lg:order-none rounded-[24px] border border-[#e3e3e3] bg-white lg:col-span-1 p-6 sm:p-[23px] flex flex-col justify-between overflow-hidden">
               <div className="flex flex-col gap-[22px]">
                 <div className="flex items-center gap-2 text-[#c8f021] font-[family-name:var(--font-poppins)] font-semibold text-[16px] leading-[1.1]">
                   <span>03</span>

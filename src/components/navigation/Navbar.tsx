@@ -101,16 +101,16 @@ function InstallButton({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function SignInButton() {
+function ContactUsButton() {
   return (
     <AnimatedButton
       variant="black"
-      className="nav-anim flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[16px] pl-[12px] text-white"
-      href="#signin"
+      className="nav-anim flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[24px] pl-[22px] text-white"
+      href="#contact"
     >
-      <PersonIcon />
-      <span className="text-[16px] font-medium leading-[24px] [font-feature-settings:'salt'_1,'liga'_0]">
-        Sign in
+      <Image src="/Phone.svg" alt="Phone" width={18} height={18} className="transition-all duration-300 group-hover:brightness-0" />
+      <span className="whitespace-nowrap text-[16px] font-medium leading-[24px] [font-feature-settings:'salt'_1,'liga'_0]">
+        Contact Us
       </span>
     </AnimatedButton>
   );
@@ -215,7 +215,7 @@ export function Navbar() {
         <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3 lg:h-[51px] lg:w-[280px] lg:gap-[15px]">
           <InstallButton compact />
           <div className="hidden lg:block">
-            <SignInButton />
+            <ContactUsButton />
           </div>
           <MobileMenu />
         </div>
