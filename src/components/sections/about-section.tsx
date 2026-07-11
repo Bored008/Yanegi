@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const desktopPhotos = [
   { src: "/about/about1.png", alt: "", className: "left-0 top-[40px] h-[215px] w-[132px]" },
@@ -33,6 +36,35 @@ const mobilePhotos = [
   "/about/about9.png",
   "/about/about12.png",
 ];
+
+function MobileMarquee({ images, reverse }: { images: string[]; reverse?: boolean }) {
+  // Each item is 132px wide + 16px gap (gap-4) = 148px total per item.
+  // We have 14 items in the array, so one full set is 14 * 148 = 2072px.
+  return (
+    <div className="flex w-max">
+      <motion.div
+        className="flex gap-4 pr-4"
+        animate={{
+          x: reverse ? [0, -2072] : [-2072, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          ease: "linear",
+          duration: 30,
+        }}
+      >
+        {[...images, ...images].map((src, i) => (
+          <div
+            className="relative h-[180px] w-[132px] shrink-0 overflow-hidden rounded-[22px]"
+            key={`${src}-${i}`}
+          >
+            <Image src={src} alt="" fill sizes="132px" className="object-cover" />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
 function AboutContent() {
   return (
@@ -75,24 +107,21 @@ function AboutContent() {
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-white px-4 py-20 sm:px-6 lg:px-[90px] lg:py-28">
-      <div className="relative mx-auto max-w-[1224px] lg:min-h-[785px]">
+    <section id="about" className="relative bg-white px-4 py-16 sm:px-6 lg:px-[90px] lg:py-28 overflow-hidden">
+      
+      {/* Mobile Top Marquee - Rotated -15 degrees, moves Right */}
+      <div className="lg:hidden relative w-full h-[250px] mb-8 flex items-center justify-center">
+        <div className="absolute w-[300vw] -rotate-[15deg] pointer-events-none opacity-80 flex justify-center">
+          <MobileMarquee images={mobilePhotos} reverse={false} />
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-[1224px] lg:min-h-[785px] z-[1]">
         <div className="relative z-[1] lg:pt-0">
           <AboutContent />
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:hidden">
-          {mobilePhotos.map((src) => (
-            <div
-              className="relative aspect-[132/180] overflow-hidden rounded-[22px]"
-              key={src}
-            >
-              <Image src={src} alt="" fill sizes="45vw" className="object-cover" />
-            </div>
-          ))}
-        </div>
-
-        <div className="pointer-events-none absolute inset-0 hidden lg:block">
+        <div className="pointer-events-none absolute inset-0 hidden lg:block z-0">
           {desktopPhotos.map((photo) => (
             <div
               className={`absolute overflow-hidden rounded-[22px] ${photo.className}`}
@@ -109,6 +138,14 @@ export function AboutSection() {
           ))}
         </div>
       </div>
+
+      {/* Mobile Bottom Marquee - Rotated -15 degrees, moves Left */}
+      <div className="lg:hidden relative w-full h-[250px] mt-8 flex items-center justify-center">
+        <div className="absolute w-[300vw] -rotate-[15deg] pointer-events-none opacity-80 flex justify-center">
+          <MobileMarquee images={mobilePhotos} reverse={true} />
+        </div>
+      </div>
+
     </section>
   );
 }
