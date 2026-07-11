@@ -36,7 +36,7 @@ const faqs = [
   }
 ];
 
-export function FaqSection() {
+export function Faq() {
   const [activeId, setActiveId] = useState<string>("Q_01");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
@@ -125,7 +125,7 @@ export function FaqSection() {
   );
 
   return (
-    <section id="faq" className="bg-white px-4 pt-10 pb-10 sm:px-6 lg:px-[90px] lg:pt-14 lg:pb-14 overflow-hidden">
+    <section id="faq" className="bg-white px-4 sm:px-6 lg:px-[90px] overflow-hidden">
       <div className="mx-auto max-w-[1260px] flex flex-col gap-[40px] lg:gap-[78px]">
         
         {/* Header Section */}

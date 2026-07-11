@@ -166,7 +166,7 @@ function StoreAvailability() {
   );
 }
 
-export function HeroSection() {
+export function Hero() {
   return (
     <section
       aria-label="Yanegi hero"

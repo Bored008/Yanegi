@@ -126,9 +126,9 @@ function MobileMenu() {
   );
 }
 
-export function SiteNavbar() {
+export function Navbar() {
   return (
-    <header className="mt-8 w-full bg-white text-[#1e1e1e]">
+    <header className="mt-2 lg:mt-8 w-full bg-white text-[#1e1e1e]">
       <nav
         aria-label="Primary"
         className="mx-auto flex h-16 w-full items-center justify-between px-4 font-[family-name:var(--font-poppins)] sm:px-6 lg:h-[51px] lg:px-[90px]"

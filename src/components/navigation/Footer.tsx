@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function SiteFooter() {
+export function Footer() {
   return (
-    <footer className="w-full px-4 sm:px-6 lg:px-[90px] pb-0 pt-10 overflow-hidden flex flex-col items-center">
+    <footer className="w-full px-4 sm:px-6 lg:px-[90px] pb-0 overflow-hidden flex flex-col items-center">
       <div className="relative w-full mx-auto max-w-[1260px] bg-[#c8f021] rounded-[44px] overflow-hidden pt-14 lg:pt-[56px] px-8 lg:px-[48px] flex flex-col justify-between min-h-[494px] border border-gray-300">
         
         {/* Decorative Background Circles */}
@@ -145,7 +145,7 @@ export function SiteFooter() {
       </div>
       
       {/* Faded Background Text Below Footer */}
-      <div className="w-full max-w-[1260px] mx-auto flex justify-center pointer-events-none mt-[56px]">
+      <div className="w-full max-w-[1260px] mx-auto flex justify-center pointer-events-none mt-[16px] lg:mt-[24px]">
         <Image src="/footer/Yanegi — Faded.svg" alt="Yanegi Faded" width={1260} height={454} className="w-full h-auto object-cover" />
       </div>
     </footer>

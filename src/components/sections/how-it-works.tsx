@@ -27,11 +27,11 @@ const steps = [
   },
 ];
 
-export function HowItWorksSection() {
+export function HowItWorks() {
   const [activeStep, setActiveStep] = useState<number | null>(0);
 
   return (
-    <section id="how-it-works" className="bg-white px-4 pt-12 pb-10 sm:px-6 lg:px-[90px] lg:pt-8 lg:pb-14">
+    <section id="how-it-works" className="bg-white px-4 sm:px-6 lg:px-[90px]">
       <div className="mx-auto max-w-[1224px] grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
         
         {/* Left Column */}
