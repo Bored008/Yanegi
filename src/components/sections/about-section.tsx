@@ -107,7 +107,7 @@ function AboutContent() {
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative bg-white px-4 py-16 sm:px-6 lg:px-[90px] lg:py-28 overflow-hidden">
+    <section id="about" className="relative bg-white px-4 pt-16 pb-24 sm:px-6 lg:px-[90px] lg:pt-28 lg:pb-14 overflow-hidden">
       
       {/* Mobile Top Marquee - Rotated -15 degrees, moves Right */}
       <div className="lg:hidden relative w-full h-[250px] mb-8 flex items-center justify-center">

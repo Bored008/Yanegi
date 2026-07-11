@@ -1,6 +1,8 @@
 import { SiteNavbar } from "@/components/navigation/site-navbar";
 import { AboutSection } from "@/components/sections/about-section";
 import { HeroSection } from "@/components/sections/hero-section";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
+import { ManifestoSection } from "@/components/sections/manifesto-section";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       <SiteNavbar />
       <HeroSection />
       <AboutSection />
+      <HowItWorksSection />
+      <ManifestoSection />
     </main>
   );
 }
