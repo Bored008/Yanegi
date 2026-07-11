@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import Image from "next/image";
 
@@ -125,7 +125,7 @@ export function Faq() {
   );
 
   return (
-    <section id="faq" className="bg-white px-4 sm:px-6 lg:px-[90px] overflow-hidden">
+    <section id="faq" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
       <div className="mx-auto max-w-[1260px] flex flex-col gap-[40px] lg:gap-[78px]">
         
         {/* Header Section */}
@@ -163,7 +163,8 @@ export function Faq() {
             const isActive = activeId === faq.id;
             
             return (
-              <div 
+              <motion.div 
+                layout
                 key={faq.id}
                 onClick={() => handleCardClick(faq.id)}
                 className={`
@@ -175,13 +176,16 @@ export function Faq() {
                   }
                 `}
               >
-                <div className={`flex flex-col ${isActive ? "gap-[30px] lg:gap-[37px]" : "gap-0"} justify-end h-full select-none`}>
+                <motion.div 
+                 
+                 className={`flex flex-col ${isActive ? "gap-[30px] lg:gap-[37px]" : "gap-0"} justify-end h-full select-none`}>
                   <h3 className={`font-[family-name:var(--font-poppins)] text-[32px] sm:text-[36px] lg:text-[42px] leading-[1.1] font-medium ${isActive ? "text-[#060606]" : "text-black/65"} mt-auto`}>
                     {faq.question}
                   </h3>
                   
                   {/* Expanded Answer */}
-                  <div 
+                  <motion.div 
+                    layout
                     className={`
                       font-[family-name:var(--font-poppins)] text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.3] text-[#060606]/60
                       overflow-hidden transition-all duration-300 ease-out
@@ -189,9 +193,9 @@ export function Faq() {
                     `}
                   >
                     {faq.answer}
-                  </div>
-                </div>
-              </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             );
           })}
           </div>

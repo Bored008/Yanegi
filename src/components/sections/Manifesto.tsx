@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Manifesto() {
   return (
-    <section id="manifesto" className="bg-white px-4 sm:px-6 lg:px-[90px]">
+    <section id="manifesto" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px]">
       <div className="mx-auto max-w-[1224px]">
         {/* Heading */}
         <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px] mb-12">

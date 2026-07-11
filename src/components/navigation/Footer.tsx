@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatedButton } from "@/components/ui/animated-button";
 
 export function Footer() {
   return (
@@ -112,9 +113,9 @@ export function Footer() {
                   className="w-full h-full bg-transparent text-white placeholder-white focus:outline-none resize-none"
                 />
               </div>
-              <button className="w-full bg-white text-black font-medium text-[16px] h-[41.1px] rounded-[41px] hover:bg-gray-100 transition-colors flex items-center justify-center mt-2">
+              <AnimatedButton variant="white" className="w-full bg-white text-black font-medium text-[16px] h-[41.1px] rounded-[41px] flex items-center justify-center mt-2">
                 Submit
-              </button>
+              </AnimatedButton>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { motion } from "framer-motion";
 
 const desktopPhotos = [
@@ -88,9 +89,10 @@ function AboutContent() {
       <p className="mt-6 rounded-[29px] bg-[#c8f021] px-3 py-1 font-[family-name:var(--font-poppins)] text-[12px] text-[#414141]">
         Make it easier to show up than to stay home.
       </p>
-      <a
+      <AnimatedButton
+        variant="black"
         href="#join-event"
-        className="mt-6 flex items-center justify-center gap-2 rounded-full bg-[#1e1e1e] py-[10px] pr-[14px] pl-4 font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
+        className="mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
       >
         <span>Join Event Now</span>
         <Image
@@ -98,16 +100,16 @@ function AboutContent() {
           alt=""
           width={10}
           height={10}
-          className="size-[10px] shrink-0"
+          className="size-[10px] shrink-0 transition-all duration-300 group-hover:invert"
         />
-      </a>
+      </AnimatedButton>
     </div>
   );
 }
 
 export function About() {
   return (
-    <section id="about" className="relative bg-white py-8 md:py-0 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
+    <section id="about" className="relative scroll-mt-28 bg-white py-8 md:py-0 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
       
       {/* Mobile Top Marquee - Rotated -15 degrees, moves Right */}
       <div className="lg:hidden relative w-full h-[250px] mb-8 flex items-center justify-center">

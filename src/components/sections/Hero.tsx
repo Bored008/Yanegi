@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AnimatedButton } from "@/components/ui/animated-button";
 
 const activityMarkers = [
   {
@@ -146,20 +147,22 @@ function StoreAvailability() {
           Also available on :
         </p>
         <div className="mt-3 flex flex-wrap items-center justify-center gap-3 sm:mt-0">
-          <a
-            href="#playstore"
+          <AnimatedButton
+            variant="white"
+            href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
             className="flex shrink-0 items-center gap-2 rounded-[34px] bg-white/90 py-[10px] pr-4 pl-[14px] text-[14px] text-black"
           >
             <Image src="/hero/playstore.svg" alt="" width={23} height={23} />
             <span>PlayStore</span>
-          </a>
-          <a
+          </AnimatedButton>
+          <AnimatedButton
+            variant="white"
             href="#apple-store"
             className="flex shrink-0 items-center gap-2 rounded-[61px] bg-white/90 py-[10px] pr-4 pl-[14px] text-[14px] text-black"
           >
             <Image src="/hero/applestore.svg" alt="" width={23} height={23} />
             <span>Apple Store(coming soon)</span>
-          </a>
+          </AnimatedButton>
         </div>
       </div>
     </div>
@@ -203,9 +206,10 @@ export function Hero() {
         </div>
 
         <div className="mt-4 flex w-full max-w-[300px] items-center justify-between gap-3 font-[family-name:var(--font-lato)] text-[14px] leading-none">
-          <a
+          <AnimatedButton
+            variant="black"
             href="#near-me"
-            className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1e1e1e] py-[10px] pr-[14px] pl-4 text-white"
+            className="flex shrink-0 items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] text-white"
           >
             <span>See what&apos;s near me</span>
             <Image
@@ -213,15 +217,16 @@ export function Hero() {
               alt=""
               width={10}
               height={10}
-              className="size-[10px] shrink-0"
+              className="size-[10px] shrink-0 transition-all duration-300 group-hover:invert"
             />
-          </a>
-          <a
+          </AnimatedButton>
+          <AnimatedButton
+            variant="white"
             href="#how-it-works"
             className="flex shrink-0 items-center justify-center rounded-[46px] border border-[#1e1e1e] bg-white/70 px-[18px] py-[10px] text-[#1e1e1e]"
           >
             How it works
-          </a>
+          </AnimatedButton>
         </div>
 
         <StoreAvailability />
