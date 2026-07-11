@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const desktopPhotos = [
   { src: "/about/about1.png", alt: "", className: "left-0 top-[40px] h-[215px] w-[132px]" },
@@ -70,13 +76,13 @@ function MobileMarquee({ images, reverse }: { images: string[]; reverse?: boolea
 function AboutContent() {
   return (
     <div className="mx-auto flex max-w-[620px] flex-col items-center text-center">
-      <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
+      <h2 className="about-anim font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
         About{" "}
         <span className="text-[#c8f021] underline decoration-[#c8f021] decoration-[3px] underline-offset-[8px]">
           Us
         </span>
       </h2>
-      <p className="mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
+      <p className="about-anim mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
         Yanegi is a live map of everything happening around you - pickup{" "}
         <span className="text-[#515151]">games</span>, open{" "}
         <span className="text-[#515151]">mics</span>,{" "}
@@ -86,13 +92,13 @@ function AboutContent() {
         <span className="text-[#515151]">real plans</span>, in{" "}
         <span className="text-[#515151]">real places</span>, right now.
       </p>
-      <p className="mt-6 rounded-[29px] bg-[#c8f021] px-3 py-1 font-[family-name:var(--font-poppins)] text-[12px] text-[#414141]">
+      <p className="about-anim mt-6 rounded-[29px] bg-[#c8f021] px-3 py-1 font-[family-name:var(--font-poppins)] text-[12px] text-[#414141]">
         Make it easier to show up than to stay home.
       </p>
       <AnimatedButton
         variant="black"
         href="#join-event"
-        className="mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
+        className="about-anim mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
       >
         <span>Join Event Now</span>
         <Image
@@ -108,11 +114,27 @@ function AboutContent() {
 }
 
 export function About() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.from(".about-anim", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 75%", // triggers when top of section hits 75% of viewport
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "back.out(1.5)" // little damping/bounce
+    });
+  }, { scope: container });
+
   return (
-    <section id="about" className="relative scroll-mt-28 bg-white py-8 md:py-0 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
+    <section ref={container} id="about" className="relative scroll-mt-28 bg-white py-8 md:py-0 px-4 sm:px-6 lg:px-[90px] overflow-hidden">
       
       {/* Mobile Top Marquee - Rotated -15 degrees, moves Right */}
-      <div className="lg:hidden relative w-full h-[250px] mb-8 flex items-center justify-center">
+      <div className="about-anim lg:hidden relative w-full h-[250px] mb-8 flex items-center justify-center">
         <div className="absolute w-[300vw] -rotate-[15deg] pointer-events-none opacity-80 flex justify-center">
           <MobileMarquee images={mobilePhotos} reverse={false} />
         </div>
@@ -126,7 +148,7 @@ export function About() {
         <div className="pointer-events-none absolute inset-0 hidden lg:block z-0">
           {desktopPhotos.map((photo) => (
             <div
-              className={`absolute overflow-hidden rounded-[22px] ${photo.className}`}
+              className={`about-anim absolute overflow-hidden rounded-[22px] ${photo.className}`}
               key={photo.src}
             >
               <Image

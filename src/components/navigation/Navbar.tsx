@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedButton } from "@/components/ui/animated-button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import {
   ChevronDownIcon,
   DownloadIcon,
@@ -27,7 +29,7 @@ const navItems: NavItem[] = [
 function Brand() {
   return (
     <Link
-      className="flex shrink-0 items-center gap-2 lg:w-[203px] lg:justify-between"
+      className="nav-anim flex shrink-0 items-center gap-2 lg:w-[203px] lg:justify-between"
       href="/"
       aria-label="Yanegi home"
     >
@@ -54,7 +56,7 @@ function DesktopLinks({ activeSection }: { activeSection: string }) {
           const isActive = activeSection === item.href;
           return (
             <Link
-              className={`relative group flex items-center transition-colors duration-300 ${
+              className={`nav-anim relative group flex items-center transition-colors duration-300 ${
                 isActive
                   ? "font-semibold text-black"
                   : "font-normal text-black/60 hover:text-black"
@@ -83,7 +85,7 @@ function InstallButton({ compact = false }: { compact?: boolean }) {
   return (
     <AnimatedButton
       variant="white"
-      className="flex h-11 shrink-0 items-center justify-center gap-2 rounded-[50px] border border-[#1e1e1e] px-3 text-black lg:h-auto lg:gap-[10px] lg:py-[10px] lg:pr-[16px] lg:pl-[12px]"
+      className="nav-anim flex h-11 shrink-0 items-center justify-center gap-2 rounded-[50px] border border-[#1e1e1e] px-3 text-black lg:h-auto lg:gap-[10px] lg:py-[10px] lg:pr-[16px] lg:pl-[12px]"
       href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
       aria-label="Install App"
     >
@@ -103,7 +105,7 @@ function SignInButton() {
   return (
     <AnimatedButton
       variant="black"
-      className="flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[16px] pl-[12px] text-white"
+      className="nav-anim flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[16px] pl-[12px] text-white"
       href="#signin"
     >
       <PersonIcon />
@@ -118,7 +120,7 @@ function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative lg:hidden">
+    <div className="nav-anim relative lg:hidden">
       <AnimatedButton
         variant="white"
         onClick={() => setIsOpen(!isOpen)}
@@ -159,6 +161,17 @@ function MobileMenu() {
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("/");
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.from(".nav-anim", {
+      opacity: 0,
+      y: -10,
+      duration: 2,
+      stagger: 0.2,
+      ease: "power2.out",
+    });
+  }, { scope: container });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -192,7 +205,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full py-2 bg-white/75 backdrop-blur-md text-[#1e1e1e]">
+    <header ref={container} className="sticky top-0 z-50 w-full py-2 bg-white/75 backdrop-blur-md text-[#1e1e1e]">
       <nav
         aria-label="Primary"
         className="mx-auto flex h-16 w-full items-center justify-between px-4 font-[family-name:var(--font-poppins)] sm:px-6 lg:h-[51px] lg:px-[90px]"

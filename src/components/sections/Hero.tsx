@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const activityMarkers = [
   {
@@ -170,8 +175,48 @@ function StoreAvailability() {
 }
 
 export function Hero() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.from(".hero-anim", {
+      y: 10,
+      opacity: 0,
+      duration: 1.5,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+
+    gsap.from(".marker-anim", {
+      scale: 0,
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: {
+        each: 0.1,
+        from: "random"
+      },
+      ease: "back.out(3)",
+      delay: 0.5
+    });
+
+    const tl = gsap.timeline({ repeat: -1, delay: 2.5 });
+    
+    tl.to(".marker-anim", {
+      keyframes: [
+        { scale: 1.3, duration: 0.3, ease: "power1.inOut" },
+        { scale: 1.3, duration: 1 },
+        { scale: 1, duration: 0.3, ease: "power1.inOut" }
+      ],
+      stagger: {
+        each: 1.6,
+        from: "random"
+      }
+    });
+  }, { scope: container });
+
   return (
     <section
+      ref={container}
       aria-label="Yanegi hero"
       className="relative h-[calc(100svh-96px)] min-h-[420px] overflow-hidden bg-cover bg-bottom bg-no-repeat sm:h-[calc(100svh-96px)] lg:h-[calc(100svh-83px)] lg:min-h-[560px]"
       style={{ backgroundImage: "url('/hero/herobg.png')" }}
@@ -185,7 +230,7 @@ export function Hero() {
               width={311}
               height={63}
               priority
-              className="h-auto w-[min(70vw,311px)]"
+              className="hero-anim h-auto w-[min(70vw,311px)]"
             />
             <Image
               src="/hero/HANGOUT.svg"
@@ -193,10 +238,10 @@ export function Hero() {
               width={522}
               height={106}
               priority
-              className="mt-1 h-auto w-[min(92vw,522px)]"
+              className="hero-anim mt-1 h-auto w-[min(92vw,522px)]"
             />
           </h1>
-          <p className="mt-2 max-w-[522px] font-[family-name:var(--font-poppins)] text-[14px] font-semibold leading-normal text-[#969595]">
+          <p className="hero-anim mt-2 max-w-[522px] font-[family-name:var(--font-poppins)] text-[14px] font-semibold leading-normal text-[#969595]">
             Yanegi maps what&apos;s happening around you - pickup{" "}
             <span className="text-[#515151]">games</span>, open{" "}
             <span className="text-[#515151]">mics</span>, rooftop plans - and
@@ -205,7 +250,7 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="mt-4 flex w-full max-w-[300px] items-center justify-between gap-3 font-[family-name:var(--font-lato)] text-[14px] leading-none">
+        <div className="hero-anim mt-4 flex w-full max-w-[300px] items-center justify-between gap-3 font-[family-name:var(--font-lato)] text-[14px] leading-none">
           <AnimatedButton
             variant="black"
             href="#near-me"
@@ -229,13 +274,15 @@ export function Hero() {
           </AnimatedButton>
         </div>
 
-        <StoreAvailability />
+        <div className="hero-anim mt-auto lg:mt-0">
+          <StoreAvailability />
+        </div>
       </div>
 
       <div className="absolute inset-0 sm:hidden">
         {mobileActivityMarkers.map((marker) => (
           <div
-            className="absolute -translate-x-1/2 -translate-y-1/2"
+            className="marker-anim absolute -translate-x-1/2 -translate-y-1/2"
             key={`mobile-${marker.name}-${marker.top}-${marker.left}`}
             style={{
               height: `${marker.height}px`,
@@ -269,7 +316,7 @@ export function Hero() {
       <div className="absolute bottom-[6%] left-1/2 hidden aspect-[821/425] w-[92vw] max-w-[821px] -translate-x-1/2 sm:block">
         {activityMarkers.map((marker) => (
           <div
-            className="absolute"
+            className="marker-anim absolute"
             key={`${marker.name}-${marker.x}-${marker.y}`}
             style={{
               height: `${(marker.height / markerFrame.height) * 100}%`,
