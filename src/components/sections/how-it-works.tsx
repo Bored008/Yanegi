@@ -1,7 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -29,18 +34,66 @@ const steps = [
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState<number | null>(0);
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 85%",
+        end: "top 20%",
+        scrub: 1,
+      }
+    });
+
+    // Left side (Title and Paragraph)
+    tl.from(".hiw-left-anim", {
+      x: -50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out"
+    }, 0);
+
+    // Vertical line
+    tl.from(".hiw-line-anim", {
+      scaleY: 0,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      transformOrigin: "top"
+    }, 0.2);
+
+    // Dots
+    tl.from(".hiw-dot-anim", {
+      scale: 0,
+      opacity: 0,
+      duration: 0.4,
+      stagger: 0.3,
+      ease: "back.out(2)"
+    }, 0.5);
+
+    // Right side content
+    tl.from(".hiw-right-anim", {
+      x: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.3,
+      ease: "power2.out"
+    }, 0.6);
+  }, { scope: container });
 
   return (
-    <section id="how-it-works" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px]">
+    <section ref={container} id="how-it-works" className="bg-white scroll-mt-28 px-4 sm:px-6 lg:px-[90px]">
       <div className="mx-auto max-w-[1224px] grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
         
         {/* Left Column */}
         <div className="flex flex-col">
-          <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
+          <h2 className="hiw-left-anim font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
             How It <br className="hidden lg:block" />
             <span className="text-[#c8f021]">Works?</span>
           </h2>
-          <p className="mt-6 text-[#969595] font-[family-name:var(--font-poppins)] text-[15px] sm:text-[16px]">
+          <p className="hiw-left-anim mt-6 text-[#969595] font-[family-name:var(--font-poppins)] text-[15px] sm:text-[16px]">
             Everything on the map is happening right now.<br className="hidden lg:block" />
             Here's how you get there.
           </p>
@@ -49,7 +102,7 @@ export function HowItWorks() {
         {/* Right Column (Stepper) */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-[9px] top-[24px] bottom-12 w-[2px] bg-[#e5e5e5]" />
+          <div className="hiw-line-anim absolute left-[9px] top-[24px] bottom-12 w-[2px] bg-[#e5e5e5]" />
           
           {steps.map((step, index) => {
             const isActive = activeStep === index;
@@ -61,12 +114,13 @@ export function HowItWorks() {
               >
                 {/* Dot */}
                 <div 
-                  className={`absolute left-[1px] top-[14px] size-[18px] rounded-full border-[3px] border-white transition-colors duration-300 z-10 ${
+                  className={`hiw-dot-anim absolute left-[1px] top-[14px] size-[18px] rounded-full border-[3px] border-white transition-colors duration-300 z-10 ${
                     isActive ? 'bg-[#c8f021]' : 'bg-[#e5e5e5]'
                   }`} 
                 />
                 
-                <div className="flex items-center gap-3">
+                <div className="hiw-right-anim">
+                  <div className="flex items-center gap-3">
                   <span className="font-[family-name:var(--font-poppins)] font-bold text-[28px] sm:text-[32px] text-[#c8f021]">
                     {step.num}
                   </span>
@@ -104,6 +158,7 @@ export function HowItWorks() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                </div>
               </div>
             );
           })}

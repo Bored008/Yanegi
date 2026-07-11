@@ -120,8 +120,9 @@ export function About() {
     gsap.from(".about-anim", {
       scrollTrigger: {
         trigger: ".about-text-content",
-        start: "top 95%",
-        toggleActions: "play none reset reverse",
+        start: "top 85%",
+        end: "end 20%",
+        scrub:1
       },
       y: 50,
       opacity: 0,
