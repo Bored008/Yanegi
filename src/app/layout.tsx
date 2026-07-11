@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   title: "yanegi",
 };
 
+import { SmoothScroll } from "@/components/smooth-scroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +42,9 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} ${raleway.variable} ${lato.variable} ${oswald.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
