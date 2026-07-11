@@ -1,0 +1,148 @@
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ChevronDownIcon,
+  DownloadIcon,
+  MenuIcon,
+  PersonIcon,
+} from "./nav-icons";
+
+const navItems = [
+  { label: "Home", href: "/", active: true },
+  { label: "About us", href: "#about" },
+  { label: "Services", href: "#services", hasMenu: true },
+  { label: "FAQ", href: "#faq" },
+];
+
+function Brand() {
+  return (
+    <Link
+      className="flex shrink-0 items-center gap-2 lg:w-[203px] lg:justify-between"
+      href="/"
+      aria-label="Yanegi home"
+    >
+      <Image
+        src="/Yanegilogo.svg"
+        alt=""
+        width={50}
+        height={47}
+        className="size-[38px] lg:h-[47px] lg:w-[50px]"
+        priority
+      />
+      <span className="text-center text-[28px] font-bold leading-none text-black [font-feature-settings:'salt'_1,'liga'_0] lg:text-[40px] lg:leading-[24px]">
+        Yanegi
+      </span>
+    </Link>
+  );
+}
+
+function DesktopLinks() {
+  return (
+    <div className="hidden items-center justify-end lg:flex">
+      <div className="flex shrink-0 items-center gap-[40px] text-[14px] leading-normal">
+        {navItems.map((item) => (
+          <Link
+            className={
+              item.active
+                ? "font-semibold underline decoration-solid underline-offset-0"
+                : "font-normal"
+            }
+            href={item.href}
+            key={item.label}
+          >
+            <span className="flex items-center justify-center gap-[5px]">
+              {item.label}
+              {item.hasMenu ? <ChevronDownIcon /> : null}
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function InstallButton({ compact = false }: { compact?: boolean }) {
+  return (
+    <Link
+      className="flex h-11 shrink-0 items-center justify-center gap-2 rounded-[50px] border border-[#1e1e1e] px-3 text-black lg:h-auto lg:gap-[10px] lg:py-[10px] lg:pr-[16px] lg:pl-[12px]"
+      href="#install"
+      aria-label="Install App"
+    >
+      <DownloadIcon />
+      <span
+        className={`font-[family-name:var(--font-raleway)] font-medium leading-[24px] [font-feature-settings:'salt'_1,'liga'_0] ${
+          compact ? "hidden sm:inline" : "text-[16px]"
+        }`}
+      >
+        Install App
+      </span>
+    </Link>
+  );
+}
+
+function SignInButton() {
+  return (
+    <Link
+      className="flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[16px] pl-[12px] text-white"
+      href="#signin"
+    >
+      <PersonIcon />
+      <span className="text-[16px] font-medium leading-[24px] [font-feature-settings:'salt'_1,'liga'_0]">
+        Sign in
+      </span>
+    </Link>
+  );
+}
+
+function MobileMenu() {
+  return (
+    <details className="group relative lg:hidden">
+      <summary
+        className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-[#1e1e1e] text-[#1e1e1e] [&::-webkit-details-marker]:hidden"
+        aria-label="Open navigation menu"
+      >
+        <MenuIcon />
+      </summary>
+      <div className="absolute right-0 top-[calc(100%+10px)] z-10 w-52 rounded-lg border border-black/10 bg-white p-2 shadow-lg">
+        {navItems.map((item) => (
+          <Link
+            className="flex items-center justify-between rounded-md px-3 py-2 text-sm text-[#1e1e1e] hover:bg-black/[.04]"
+            href={item.href}
+            key={item.label}
+          >
+            <span>{item.label}</span>
+            {item.hasMenu ? <ChevronDownIcon /> : null}
+          </Link>
+        ))}
+        <Link
+          className="mt-1 flex items-center justify-center gap-2 rounded-md bg-[#1e1e1e] px-3 py-2 text-sm font-medium text-white"
+          href="#signin"
+        >
+          <PersonIcon />
+          Sign in
+        </Link>
+      </div>
+    </details>
+  );
+}
+
+export function SiteNavbar() {
+  return (
+    <header className="mt-8 w-full bg-white text-[#1e1e1e]">
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex h-16 w-full items-center justify-between px-4 font-[family-name:var(--font-poppins)] sm:px-6 lg:h-[51px] lg:px-[90px]"
+      >
+        <DesktopLinks />
+        <Brand />
+        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3 lg:h-[51px] lg:w-[280px] lg:gap-[15px]">
+          <InstallButton compact />
+          <div className="hidden lg:block">
+            <SignInButton />
+          </div>
+          <MobileMenu />
+        </div>
+      </nav>
+    </header>
+  );
+}
