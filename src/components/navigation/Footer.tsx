@@ -1,11 +1,50 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Footer() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 75%",
+        end: "bottom 20%",
+        scrub: 1
+      }
+    });
+
+    tl.from(".footer-card-anim", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1,
+      ease: "back.out(1.5)"
+    }, 0)
+    .from(".footer-text-anim", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger:{
+        trigger: ".footer-text-anim",
+        start: "top 50%",
+        end: "top 50%",
+        scrub: 1
+      }
+    }, 0.2);
+  }, { scope: container });
+
   return (
-    <footer className="w-full px-4 sm:px-6 lg:px-[90px] pb-0 overflow-hidden flex flex-col items-center">
-      <div className="relative w-full mx-auto max-w-[1260px] bg-[#c8f021] rounded-[44px] overflow-hidden pt-14 lg:pt-[56px] px-8 lg:px-[48px] flex flex-col justify-between min-h-[494px] border border-gray-300">
+    <footer ref={container} className="w-full px-4 sm:px-6 lg:px-[90px] pb-0 overflow-hidden flex flex-col items-center">
+      <div className="footer-card-anim relative w-full mx-auto max-w-[1260px] bg-[#c8f021] rounded-[44px] overflow-hidden pt-14 lg:pt-[56px] px-8 lg:px-[48px] flex flex-col justify-between min-h-[494px] border border-gray-300">
         
         {/* Decorative Background Circles */}
         <div 
@@ -146,7 +185,7 @@ export function Footer() {
       </div>
       
       {/* Faded Background Text Below Footer */}
-      <div className="w-full max-w-[1260px] mx-auto flex justify-center pointer-events-none mt-[16px] lg:mt-[24px]">
+      <div className="footer-text-anim w-full max-w-[1260px] mx-auto flex justify-center pointer-events-none mt-[16px] lg:mt-[24px]">
         <Image src="/footer/Yanegi — Faded.svg" alt="Yanegi Faded" width={1260} height={454} className="w-full h-auto object-cover" />
       </div>
     </footer>

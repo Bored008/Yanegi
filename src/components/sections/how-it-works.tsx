@@ -79,7 +79,13 @@ export function HowItWorks() {
       opacity: 0,
       duration: 0.8,
       stagger: 0.3,
-      ease: "power2.out"
+      ease: "power2.out",
+      scrollTrigger:{
+        trigger:".hiw-right-anim",
+        start:"top 70%",
+        end:"top 40%",
+        scrub:2
+      }
     }, 0.6);
   }, { scope: container });
 
