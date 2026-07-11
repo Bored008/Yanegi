@@ -74,15 +74,29 @@ function MobileMarquee({ images, reverse }: { images: string[]; reverse?: boolea
 }
 
 function AboutContent() {
+  useGSAP(()=>{
+    gsap.from(".about-text >*",{
+      y:20,
+      opacity:0,
+      stagger: 1,
+      ease:"easeInOut",
+      scrollTrigger:{
+        trigger: ".about-text",
+        start: "top 70%",
+        end: "top 40%",
+        scrub: 1
+      }
+    })
+  })
   return (
-    <div className="mx-auto flex max-w-[620px] flex-col items-center text-center">
-      <h2 className="about-anim font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
+    <div className="about-text mx-auto flex max-w-[620px] flex-col items-center text-center">
+      <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
         About{" "}
         <span className="text-[#c8f021] underline decoration-[#c8f021] decoration-[3px] underline-offset-[8px]">
           Us
         </span>
       </h2>
-      <p className="about-anim mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
+      <p className="mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
         Yanegi is a live map of everything happening around you - pickup{" "}
         <span className="text-[#515151]">games</span>, open{" "}
         <span className="text-[#515151]">mics</span>,{" "}
