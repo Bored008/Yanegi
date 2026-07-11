@@ -15,7 +15,7 @@ export function Manifesto() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container.current,
-        start: "top 60%",
+        start: "top 70%",
         end: "top 10%",
         scrub: 1
       }
