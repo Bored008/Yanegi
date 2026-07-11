@@ -125,7 +125,7 @@ export function FaqSection() {
   );
 
   return (
-    <section id="faq" className="bg-white px-4 pt-20 pb-20 sm:px-6 lg:px-[90px] lg:pt-28 lg:pb-28 overflow-hidden">
+    <section id="faq" className="bg-white px-4 pt-10 pb-10 sm:px-6 lg:px-[90px] lg:pt-14 lg:pb-14 overflow-hidden">
       <div className="mx-auto max-w-[1260px] flex flex-col gap-[40px] lg:gap-[78px]">
         
         {/* Header Section */}
