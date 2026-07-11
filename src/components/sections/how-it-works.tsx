@@ -83,7 +83,7 @@ export function HowItWorks() {
       scrollTrigger:{
         trigger:".hiw-right-anim",
         start:"top 70%",
-        end:"top 40%",
+        end:"bottom 40%",
         scrub:2
       }
     }, 0.6);

@@ -18,7 +18,7 @@ export function Footer() {
       scrollTrigger: {
         trigger: container.current,
         start: "top 75%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 1
       }
     });
@@ -31,12 +31,13 @@ export function Footer() {
     }, 0)
     .from(".footer-text-anim", {
       y: 50,
+      z:-10,
       opacity: 0,
       duration: 1,
       scrollTrigger:{
-        trigger: ".footer-text-anim",
-        start: "top 50%",
-        end: "top 50%",
+        trigger: container.current,
+        start: "top 0%",
+        end: "bottom 40%",
         scrub: 1
       }
     }, 0.2);
