@@ -20,10 +20,10 @@ export function SiteFooter() {
           <Image src="/footer/Ellipse 14.svg" alt="Circle" fill className="object-contain" />
         </div>
 
-        <div className="relative z-10 w-full flex flex-col lg:flex-row justify-start gap-12 lg:gap-[64px] pb-16">
+        <div className="relative z-10 w-full grid grid-cols-2 lg:flex lg:flex-row justify-between lg:justify-start gap-x-4 gap-y-12 md:gap-x-12 lg:gap-[64px] pb-16">
           
           {/* Column 1: Brand & Socials */}
-          <div className="flex flex-col gap-[28px] w-full lg:w-[180px]">
+          <div className="flex flex-col gap-[28px] w-full lg:w-[180px] col-span-2 md:col-span-1 order-1 lg:order-1">
             <div className="flex flex-col gap-[11px] items-start">
               <Image src="/Yanegilogo.svg" alt="Yanegi Logo" width={86} height={80} className="object-contain" />
               <h2 className="font-[family-name:var(--font-poppins)] font-bold text-[32px] text-black tracking-tight leading-none">
@@ -48,14 +48,16 @@ export function SiteFooter() {
                 <Link href="#" className="hover:opacity-80 transition-opacity bg-white p-[3px] rounded">
                   <Image src="/footer/Vector.svg" alt="X (Twitter)" width={22} height={22} />
                 </Link>
+                <Link href="#" className="hover:opacity-80 transition-opacity">
+                  <Image src="/footer/whatsapp.svg" alt="Whatsapp" width={28} height={28} />
+                </Link>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-row justify-between lg:justify-start gap-4 lg:gap-[64px] w-full lg:w-auto">
-            {/* Column 2: Contacts */}
-            <div className="flex flex-col gap-[31px] lg:w-[197px] text-white font-[family-name:var(--font-poppins)] text-[16px]">
-              <h3 className="font-medium text-[20px] uppercase tracking-wide">Contacts</h3>
+          {/* Column 2: Contacts */}
+          <div className="flex flex-col gap-[31px] w-full lg:w-[197px] col-span-1 md:col-span-1 order-2 md:order-3 lg:order-2 text-white font-[family-name:var(--font-poppins)] text-[16px]">
+            <h3 className="font-medium text-[20px] uppercase tracking-wide">Contacts</h3>
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-3">
                   <Image src="/footer/Phone.svg" alt="Phone" width={22} height={22} className="shrink-0" />
@@ -78,9 +80,9 @@ export function SiteFooter() {
               </div>
             </div>
 
-            {/* Column 3: Navigations */}
-            <div className="flex flex-col gap-[31px] lg:w-auto text-white font-[family-name:var(--font-poppins)] text-[16px]">
-              <h3 className="font-medium text-[20px] uppercase tracking-wide">Navigations</h3>
+          {/* Column 3: Navigations */}
+          <div className="flex flex-col gap-[31px] w-full lg:w-auto col-span-1 md:col-span-1 order-3 md:order-2 lg:order-3 text-white font-[family-name:var(--font-poppins)] text-[16px]">
+            <h3 className="font-medium text-[20px] uppercase tracking-wide">Navigations</h3>
               <div className="flex flex-col gap-[24px]">
                 <Link href="#about" className="font-medium text-[14px] sm:text-[16px] hover:underline decoration-white underline-offset-4">About Us</Link>
                 <Link href="#products" className="font-medium text-[14px] sm:text-[16px] hover:underline decoration-white underline-offset-4">Products</Link>
@@ -88,10 +90,9 @@ export function SiteFooter() {
                 <Link href="#contact" className="font-medium text-[14px] sm:text-[16px] hover:underline decoration-white underline-offset-4">Contact</Link>
               </div>
             </div>
-          </div>
 
           {/* Column 4: Get In Touch */}
-          <div className="flex flex-col gap-[10.5px] w-full lg:w-[378.5px] text-white font-[family-name:var(--font-poppins)] text-[14px]">
+          <div className="flex flex-col gap-[10.5px] w-full lg:w-[378.5px] col-span-2 md:col-span-1 order-4 md:order-4 lg:order-4 text-white font-[family-name:var(--font-poppins)] text-[14px]">
             <h3 className="font-medium text-[29px] leading-tight mb-2">Get In Touch!</h3>
             <div className="w-full flex flex-col gap-[10.5px]">
               <div className="h-[54px] w-full bg-transparent border-[1.6px] border-white rounded-[9.66px] px-[19.3px] py-[20.1px] flex items-center">
