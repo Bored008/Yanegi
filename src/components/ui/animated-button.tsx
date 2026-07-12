@@ -7,6 +7,8 @@ interface AnimatedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   className?: string;
   children: ReactNode;
   onClick?: () => void;
+  target?: string;
+  rel?: string;
 }
 
 export function AnimatedButton({
@@ -15,6 +17,8 @@ export function AnimatedButton({
   className = "",
   children,
   onClick,
+  target,
+  rel,
   ...props
 }: AnimatedButtonProps) {
   const isBlack = variant === "black";
@@ -42,7 +46,7 @@ export function AnimatedButton({
 
   if (href) {
     return (
-      <Link href={href} className={finalClasses} onClick={onClick}>
+      <Link href={href} className={finalClasses} onClick={onClick} target={target} rel={rel}>
         {content}
       </Link>
     );

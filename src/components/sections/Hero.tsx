@@ -155,6 +155,8 @@ function StoreAvailability() {
           <AnimatedButton
             variant="white"
             href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex shrink-0 items-center gap-2 rounded-[34px] bg-white/90 py-[10px] pr-4 pl-[14px] text-[14px] text-black"
           >
             <Image src="/hero/playstore.svg" alt="" width={23} height={23} />

@@ -87,6 +87,8 @@ function InstallButton({ compact = false }: { compact?: boolean }) {
       variant="white"
       className="nav-anim flex h-11 shrink-0 items-center justify-center gap-2 rounded-[50px] border border-[#1e1e1e] px-3 text-black lg:h-auto lg:gap-[10px] lg:py-[10px] lg:pr-[16px] lg:pl-[12px]"
       href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Install App"
     >
       <DownloadIcon />
@@ -106,7 +108,7 @@ function ContactUsButton() {
     <AnimatedButton
       variant="black"
       className="nav-anim flex items-center justify-center gap-[10px] rounded-[40px] border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[10px] pr-[24px] pl-[22px] text-white"
-      href="#contact"
+      href="mailto:supportyanegi@gmail.com"
     >
       <Image src="/Phone.svg" alt="Phone" width={18} height={18} className="transition-all duration-300 group-hover:brightness-0" />
       <span className="whitespace-nowrap text-[16px] font-medium leading-[24px] [font-feature-settings:'salt'_1,'liga'_0]">

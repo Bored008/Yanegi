@@ -208,6 +208,7 @@ export function Faq() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 key={faq.id}
                 onClick={() => handleCardClick(faq.id)}
+                onMouseEnter={() => setActiveId(faq.id)}
                 className={`
                   shrink-0 snap-start rounded-[21px] flex flex-col justify-end p-8 sm:p-10 lg:p-[42px]
                   h-[380px] lg:h-[416px] cursor-pointer overflow-hidden

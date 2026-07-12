@@ -115,6 +115,8 @@ function AboutContent() {
       <AnimatedButton
         variant="black"
         href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
+        target="_blank"
+        rel="noopener noreferrer"
         className="about-text mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
       >
         <span>Join Event Now</span>

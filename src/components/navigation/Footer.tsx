@@ -86,17 +86,16 @@ export function Footer() {
                 Follow Us :
               </span>
               <div className="flex items-center justify-start gap-[20px]">
-                <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/ic_baseline-facebook.svg" alt="Facebook" width={34} height={34} />
+                <Link href="https://x.com/SupportYan7525" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity text-white">
+                  <svg viewBox="0 0 24 24" width={34} height={34} fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
                 </Link>
-                <Link href="#" className="hover:opacity-80 transition-opacity">
+                <Link href="https://www.instagram.com/yanegi.app/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                   <Image src="/footer/ri_instagram-fill.svg" alt="Instagram" width={34} height={34} />
                 </Link>
-                <Link href="#" className="hover:opacity-80 transition-opacity">
+                <Link href="https://www.linkedin.com/company/yanegii/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                   <Image src="/footer/mdi_linkedin.svg" alt="LinkedIn" width={34} height={34} />
-                </Link>
-                <Link href="#" className="hover:opacity-80 transition-opacity">
-                  <Image src="/footer/whatsapp.svg" alt="Whatsapp" width={34} height={34} />
                 </Link>
               </div>
             </div>
@@ -106,22 +105,14 @@ export function Footer() {
           <div className="flex flex-col gap-[31px] w-full lg:w-[197px] col-span-1 md:col-span-1 order-2 md:order-3 lg:order-2 text-white font-[family-name:var(--font-poppins)] text-[16px]">
             <h3 className="font-medium text-[20px] uppercase tracking-wide">Contacts</h3>
               <div className="flex flex-col gap-6">
-                <div className="flex items-center gap-3">
-                  <Image src="/footer/Phone.svg" alt="Phone" width={22} height={22} className="shrink-0" />
-                  <span className="font-medium text-[14px] sm:text-[16px]">123 456 789</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Image src="/footer/whatsapp.svg" alt="Whatsapp" width={22} height={22} className="shrink-0" />
-                  <span className="font-medium text-[14px] sm:text-[16px]">Whatsapp</span>
-                </div>
-                <div className="flex items-center gap-3">
+                <a href="mailto:supportyanegi@gmail.com" className="flex items-center gap-3">
                   <Image src="/footer/mail.svg" alt="Email" width={22} height={22} className="shrink-0" />
-                  <span className="font-medium text-[14px] sm:text-[16px] break-all">yanagi@gmail.com</span>
-                </div>
+                  <span className="font-medium text-[14px] sm:text-[16px] break-all">supportyanegi@gmail.com</span>
+                </a>
                 <div className="flex items-start gap-3">
                   <Image src="/footer/time.svg" alt="Hours" width={22} height={22} className="mt-1 shrink-0" />
                   <span className="font-medium leading-tight text-[14px] sm:text-[16px]">
-                    Lunes a Viernes<br/>09:00 a 20:00 horas
+                    India Kolkata<br/>09:00 AM - 07:00 PM IST
                   </span>
                 </div>
               </div>
@@ -171,7 +162,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="relative z-10 w-full border-t border-white/70 pt-[18px] pb-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-white font-[family-name:var(--font-poppins)] text-[15px]">
+        <div className="relative z-10 w-full border-t border-black/20 pt-[18px] pb-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-black/80 font-[family-name:var(--font-poppins)] text-[15px]">
           <div className="flex items-center justify-center md:justify-start gap-[8px] w-full md:w-1/3">
             <span className="text-[20px]">&copy;</span>
             <span className="text-[16px]">2026 BORED. All Rights Reserved</span>
@@ -180,16 +171,17 @@ export function Footer() {
           <div className="w-full md:w-1/3 flex justify-center text-center text-[16px]">
             <span>
               Designed and built by{" "}
-              <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold">
+              <Link href="https://www.linkedin.com/in/himanshuakabored/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors duration-300 font-semibold">
                 Bored
               </Link>
+              {` `}💗
             </span>
           </div>
 
           <div className="flex items-center gap-[18px] flex-wrap justify-center md:justify-end w-full md:w-1/3">
-            <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Privacy Policy</Link>
-            <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Terms of Service</Link>
-            <Link href="#" className="underline underline-offset-2 hover:opacity-80 transition-opacity">Cookie Policy</Link>
+            <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Terms of Service</Link>
+            <Link href="/cookie-policy" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Cookie Policy</Link>
           </div>
         </div>
       </div>
