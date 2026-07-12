@@ -83,7 +83,7 @@ function AboutContent() {
       scrollTrigger:{
         trigger: ".about-text",
         start: "top 70%",
-        end: "top 40%",
+        end: "top 60%",
         scrub: 1
       }
     })

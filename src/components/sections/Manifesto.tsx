@@ -40,7 +40,7 @@ export function Manifesto() {
       scrollTrigger:{
         trigger: ".man-card-anim",
         start: "top 60%",
-        end: "bottom 20%",
+        end: "bottom 30%",
         scrub: 2
       }
     }, "-=0.5");
