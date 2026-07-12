@@ -38,7 +38,7 @@ export function Manifesto() {
       stagger: 0.2,
       ease: "back.out(1.5)",
       scrollTrigger:{
-        markers:true,
+        markers:false,
         trigger: ".man-card-anim",
         start:()=>window.innerWidth<768?"top 85%":"top 60%",
         end:()=>window.innerWidth<768?"bottom 40%":"bottom 10%",
