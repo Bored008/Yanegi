@@ -42,9 +42,10 @@ export function Footer() {
         opacity: 0,
         duration: 1,
         scrollTrigger:{
+          markers:false,
           trigger: ".footer-text-anim",
-          start: isMobile ? "top 100%":"top 60%",
-          end: isMobile ? "top 100%":"bottom 30%",
+          start: isMobile ? "top 100%":"top 100%",
+          end: isMobile ? "bottom 90%":"bottom 75%",
           scrub: 1
         }
       }, 0.2);
