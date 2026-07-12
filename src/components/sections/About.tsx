@@ -75,28 +75,31 @@ function MobileMarquee({ images, reverse }: { images: string[]; reverse?: boolea
 
 function AboutContent() {
   useGSAP(()=>{
-    gsap.from(".about-text >*",{
+    const tl = gsap.timeline()
+    tl.from(".about-text",{
       y:20,
       opacity:0,
       stagger: 1,
       ease:"easeInOut",
+      duration:1,
       scrollTrigger:{
+        markers:true,
         trigger: ".about-text",
-        start: "top 70%",
-        end: "top 60%",
+        start:()=>window.innerWidth<768?"top 90%":"top 85%",
+        end: ()=>window.innerWidth<768?"bottom 60%":"bottom 60%",
         scrub: 1
       }
     })
   })
   return (
-    <div className="about-text mx-auto flex max-w-[620px] flex-col items-center text-center">
-      <h2 className="font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
+    <div className="mx-auto flex max-w-[620px] flex-col items-center text-center">
+      <h2 className="about-text font-[family-name:var(--font-oswald)] text-[64px] font-bold leading-none text-[#060606] sm:text-[82px] lg:text-[96px]">
         About{" "}
         <span className="text-[#c8f021] underline decoration-[#c8f021] decoration-[3px] underline-offset-[8px]">
           Us
         </span>
       </h2>
-      <p className="mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
+      <p className="about-text mt-6 max-w-[538px] font-[family-name:var(--font-poppins)] text-[15px] leading-normal text-[#969595] sm:text-[16px]">
         Yanegi is a live map of everything happening around you - pickup{" "}
         <span className="text-[#515151]">games</span>, open{" "}
         <span className="text-[#515151]">mics</span>,{" "}
@@ -106,13 +109,13 @@ function AboutContent() {
         <span className="text-[#515151]">real plans</span>, in{" "}
         <span className="text-[#515151]">real places</span>, right now.
       </p>
-      <p className="about-anim mt-6 rounded-[29px] bg-[#c8f021] px-3 py-1 font-[family-name:var(--font-poppins)] text-[12px] text-[#414141]">
+      <p className="about-text mt-6 rounded-[29px] bg-[#c8f021] px-3 py-1 font-[family-name:var(--font-poppins)] text-[12px] text-[#414141]">
         Make it easier to show up than to stay home.
       </p>
       <AnimatedButton
         variant="black"
         href="https://play.google.com/store/search?q=yanegi&c=apps&hl=en_IN"
-        className="about-anim mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
+        className="about-text mt-6 flex items-center justify-center gap-2 rounded-full border-2 border-[#1e1e1e] bg-[#1e1e1e] py-[8px] pr-[12px] pl-[14px] font-[family-name:var(--font-lato)] text-[14px] leading-none text-white"
       >
         <span>Join Event Now</span>
         <Image
