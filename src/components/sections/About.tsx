@@ -83,7 +83,7 @@ function AboutContent() {
       ease:"easeInOut",
       duration:1,
       scrollTrigger:{
-        markers:true,
+        markers:false,
         trigger: ".about-text",
         start:()=>window.innerWidth<768?"top 90%":"top 85%",
         end: ()=>window.innerWidth<768?"bottom 60%":"bottom 60%",
