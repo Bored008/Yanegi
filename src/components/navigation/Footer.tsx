@@ -179,9 +179,9 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-[18px] flex-wrap justify-center md:justify-end w-full md:w-1/3">
-            <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Privacy Policy</Link>
-            <Link href="/terms-of-service" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Terms of Service</Link>
-            <Link href="/cookie-policy" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Cookie Policy</Link>
+            <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Privacy Policy</Link>
+            <Link href="/terms-of-service" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Terms of Service</Link>
+            <Link href="/cookie-policy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white transition-colors duration-300">Cookie Policy</Link>
           </div>
         </div>
       </div>
