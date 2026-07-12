@@ -47,10 +47,11 @@ export function Faq() {
   const sectionRef = useRef<HTMLElement>(null);
   
   useGSAP(() => {
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 80%",
+        start:()=> window.innerWidth < 768 ? "top 75%" : "top 70%",
         end: "top 20%",
         scrub: 1
       }
@@ -72,8 +73,8 @@ export function Faq() {
       duration: 2,
       scrollTrigger:{
         trigger: ".faq-cards-anim",
-        start: "top 70%",
-        end: "top 40%",
+        start:()=> window.innerWidth < 768 ? "top 80%" : "top 70%",
+        end:()=> window.innerWidth < 768 ? "top 60%" : "top 40%",
         scrub: 2
       }
     }, 0.2);

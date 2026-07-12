@@ -14,33 +14,41 @@ export function Footer() {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 75%",
-        end: "bottom 50%",
-        scrub: 1
-      }
-    });
+    let mm = gsap.matchMedia();
 
-    tl.from(".footer-card-anim", {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      ease: "back.out(1.5)"
-    }, 0)
-    .from(".footer-text-anim", {
-      y: 50,
-      z:-10,
-      opacity: 0,
-      duration: 1,
-      scrollTrigger:{
-        trigger: container.current,
-        start: "top 0%",
-        end: "bottom 40%",
-        scrub: 1
-      }
-    }, 0.2);
+    mm.add({
+      isDesktop:"(min-width:768px)",
+      isMobile:"(max-width:768px)",
+    },(context)=>{
+      let { isMobile } = context.conditions as { isMobile: boolean };
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container.current,
+          start: isMobile ? "top 78%":"top 75%",
+          end: isMobile ? "top 40%":"bottom 50%",
+          scrub: 1
+        }
+      });
+  
+      tl.from(".footer-card-anim", {
+        scale: 0.8,
+        opacity: 0,
+        duration:()=> window.innerWidth < 768 ? 0.5 : 1,
+        ease:isMobile ? "power1.out" : "back.out(1.5)"
+      }, 0)
+      .from(".footer-text-anim", {
+        y: 50,
+        z:-10,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger:{
+          trigger: ".footer-text-anim",
+          start: isMobile ? "top 100%":"top 60%",
+          end: isMobile ? "top 100%":"bottom 30%",
+          scrub: 1
+        }
+      }, 0.2);
+    })
   }, { scope: container });
 
   return (
