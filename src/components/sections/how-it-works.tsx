@@ -81,9 +81,10 @@ export function HowItWorks() {
       stagger: 0.3,
       ease: "power2.out",
       scrollTrigger:{
-        trigger:".hiw-right-anim",
-        start:"top 70%",
-        end:"bottom 40%",
+        markers:false,
+        trigger:".hiw-line-anim",
+        start:()=>window.innerWidth<768?"top 95%":"top 70%",
+        end:()=>window.innerWidth<768?"bottom 30%":"bottom 10%",
         scrub:2
       }
     }, 0.6);
