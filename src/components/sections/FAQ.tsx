@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -204,11 +204,12 @@ export function Faq() {
             return (
               <motion.div 
                 layout
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 key={faq.id}
                 onClick={() => handleCardClick(faq.id)}
                 className={`
                   shrink-0 snap-start rounded-[21px] flex flex-col justify-end p-8 sm:p-10 lg:p-[42px]
-                  h-[380px] lg:h-[416px] transition-all duration-300 ease-out
+                  h-[380px] lg:h-[416px] cursor-pointer overflow-hidden
                   ${isActive 
                     ? "w-[280px] sm:w-[320px] lg:w-[407px] bg-[#c8f021] text-[#060606]" 
                     : "w-[260px] sm:w-[280px] lg:w-[300px] bg-[#e5e9ea] text-black/65 hover:bg-gray-200"
@@ -216,23 +217,26 @@ export function Faq() {
                 `}
               >
                 <motion.div 
-                 
+                 layout="position"
                  className={`flex flex-col ${isActive ? "gap-[30px] lg:gap-[37px]" : "gap-0"} justify-end h-full select-none`}>
-                  <h3 className={`font-[family-name:var(--font-poppins)] text-[32px] sm:text-[36px] lg:text-[42px] leading-[1.1] font-medium ${isActive ? "text-[#060606]" : "text-black/65"} mt-auto`}>
+                  <motion.h3 layout="position" className={`font-[family-name:var(--font-poppins)] text-[32px] sm:text-[36px] lg:text-[42px] leading-[1.1] font-medium ${isActive ? "text-[#060606]" : "text-black/65"} mt-auto`}>
                     {faq.question}
-                  </h3>
+                  </motion.h3>
                   
                   {/* Expanded Answer */}
-                  <motion.div 
-                    layout
-                    className={`
-                      font-[family-name:var(--font-poppins)] text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.3] text-[#060606]/60
-                      overflow-hidden transition-all duration-300 ease-out
-                      ${isActive ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0 hidden"}
-                    `}
-                  >
-                    {faq.answer}
-                  </motion.div>
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="font-[family-name:var(--font-poppins)] text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.3] text-[#060606]/60 overflow-hidden"
+                      >
+                        {faq.answer}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               </motion.div>
             );
