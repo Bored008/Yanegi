@@ -84,7 +84,7 @@ export function HowItWorks() {
         markers:false,
         trigger:".hiw-line-anim",
         start:()=>window.innerWidth<768?"top 95%":"top 70%",
-        end:()=>window.innerWidth<768?"bottom 30%":"bottom 10%",
+        end:()=>window.innerWidth<768?"bottom 60%":"bottom 30%",
         scrub:2
       }
     }, 0.6);
