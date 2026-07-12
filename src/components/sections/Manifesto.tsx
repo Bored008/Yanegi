@@ -12,19 +12,19 @@ export function Manifesto() {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 70%",
-        end: "top 10%",
-        scrub: 1
-      }
-    });
+    const tl = gsap.timeline();
 
     tl.from(".man-title-anim", {
       x: -100,
       opacity: 0,
-      duration: 1
+      duration: 1,
+      scrollTrigger:{
+        markers:false,
+        trigger:".man-title-anim",
+        start:()=>window.innerWidth<768?"top 65%":"top 40%",
+        end:()=>window.innerWidth<768?"bottom 40%":"bottom 20%",
+        scrub:1
+      }
     })
     .from(".man-bento-anim", {
       scale: 0.8,
@@ -38,9 +38,10 @@ export function Manifesto() {
       stagger: 0.2,
       ease: "back.out(1.5)",
       scrollTrigger:{
+        markers:true,
         trigger: ".man-card-anim",
-        start: "top 60%",
-        end: "bottom 30%",
+        start:()=>window.innerWidth<768?"top 85%":"top 60%",
+        end:()=>window.innerWidth<768?"bottom 40%":"bottom 10%",
         scrub: 2
       }
     }, "-=0.5");
