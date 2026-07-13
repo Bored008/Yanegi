@@ -27,7 +27,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "yanegi",
+  title: "Yanegi",
 };
 
 import { SmoothScroll } from "@/components/smooth-scroll";
